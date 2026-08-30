@@ -15,10 +15,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=20260829d">
+    <link rel="stylesheet" href="style.css?v=20260829e">
 </head>
 
 <body>
+
+<!-- =========================================================
+     CONNECTION WARNING
+     Hidden by default. Only shows if the site truly cannot
+     reach the cloud database, so changes/orders would not save.
+========================================================= -->
+
+<div id="connectionWarning" class="connection-warning" style="display:none;">
+    <span>⚠ Can't connect to the cloud database right now — changes and orders won't be saved until this is fixed.</span>
+    <span id="connectionWarningDetail" class="connection-warning-detail"></span>
+</div>
+
 
 <!-- =========================================================
      LOADING
@@ -1261,7 +1273,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
 
-<script src="script.js?v=20260829d"></script>
+<script src="script.js?v=20260829e"></script>
 
 </body>
 </html>
