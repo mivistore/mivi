@@ -113,6 +113,37 @@ function syncSharedState() {
 }
 
 
+function updateSyncIndicator(state) {
+
+    const el = document.getElementById("cloudSyncStatus");
+    if (!el) return;
+
+    clearTimeout(updateSyncIndicator._timer);
+
+    if (state === "saving") {
+
+        el.textContent = "Saving to cloud...";
+        el.className = "cloud-sync-status saving";
+
+    } else if (state === "saved") {
+
+        el.textContent = "All changes saved ✓";
+        el.className = "cloud-sync-status saved";
+
+        updateSyncIndicator._timer = setTimeout(() => {
+            el.className = "cloud-sync-status";
+        }, 2500);
+
+    } else if (state === "error") {
+
+        el.textContent = "⚠ Could not save — check your internet and try again";
+        el.className = "cloud-sync-status error";
+
+    }
+
+}
+
+
 function saveCart() {
 
     localStorage.setItem(
@@ -124,6 +155,8 @@ function saveCart() {
 
 
 async function saveProducts() {
+
+    updateSyncIndicator("saving");
 
     try {
 
@@ -143,14 +176,20 @@ async function saveProducts() {
 
         await batch.commit();
 
+        updateSyncIndicator("saved");
+
     } catch (error) {
         console.error("saveProducts failed:", error);
+        updateSyncIndicator("error");
+        throw error;
     }
 
 }
 
 
 async function saveOrders() {
+
+    updateSyncIndicator("saving");
 
     try {
 
@@ -170,8 +209,12 @@ async function saveOrders() {
 
         await batch.commit();
 
+        updateSyncIndicator("saved");
+
     } catch (error) {
         console.error("saveOrders failed:", error);
+        updateSyncIndicator("error");
+        throw error;
     }
 
 }
@@ -192,6 +235,8 @@ function generateCustomerId(customer) {
 
 function saveCustomers() {
 
+    updateSyncIndicator("saving");
+
     const batch = db.batch();
 
     customers.forEach(customer => {
@@ -204,35 +249,61 @@ function saveCustomers() {
 
     });
 
-    batch.commit().catch(error => console.error("saveCustomers failed:", error));
+    batch.commit()
+        .then(() => updateSyncIndicator("saved"))
+        .catch(error => {
+            console.error("saveCustomers failed:", error);
+            updateSyncIndicator("error");
+        });
 
 }
 
 
 function saveAdmin() {
 
+    updateSyncIndicator("saving");
+
     db.collection("settings").doc("store").set({
         adminId: adminData.id,
         adminPassword: adminData.password
-    }, { merge: true }).catch(error => console.error("saveAdmin failed:", error));
+    }, { merge: true })
+        .then(() => updateSyncIndicator("saved"))
+        .catch(error => {
+            console.error("saveAdmin failed:", error);
+            updateSyncIndicator("error");
+        });
 
 }
 
 
 function saveHeroPhoto() {
 
+    updateSyncIndicator("saving");
+
     db.collection("settings").doc("store").set({
         heroPhoto
-    }, { merge: true }).catch(error => console.error("saveHeroPhoto failed:", error));
+    }, { merge: true })
+        .then(() => updateSyncIndicator("saved"))
+        .catch(error => {
+            console.error("saveHeroPhoto failed:", error);
+            updateSyncIndicator("error");
+        });
 
 }
 
 
 function saveSaleIdeaToCloud() {
 
+    updateSyncIndicator("saving");
+
     db.collection("settings").doc("store").set({
         saleIdea
-    }, { merge: true }).catch(error => console.error("saveSaleIdea failed:", error));
+    }, { merge: true })
+        .then(() => updateSyncIndicator("saved"))
+        .catch(error => {
+            console.error("saveSaleIdea failed:", error);
+            updateSyncIndicator("error");
+        });
 
 }
 
@@ -378,11 +449,9 @@ function previewHeroPhoto(event) {
         return;
     }
 
-    const reader = new FileReader();
+    compressImageFile(file, 1200, 0.8).then(dataUrl => {
 
-    reader.addEventListener("load", () => {
-
-        heroPhoto = reader.result;
+        heroPhoto = dataUrl;
         saveHeroPhoto();
         renderHeroPhoto();
 
@@ -393,9 +462,11 @@ function previewHeroPhoto(event) {
         preview.style.display = "block";
         text.style.display = "none";
 
-    });
+    }).catch(() => {
 
-    reader.readAsDataURL(file);
+        alert("Could not process that photo. Please try a different image.");
+
+    });
 
 }
 
@@ -1962,6 +2033,57 @@ function resetProductForm() {
 }
 
 
+function compressImageFile(file, maxDimension, quality) {
+
+    return new Promise((resolve, reject) => {
+
+        const reader = new FileReader();
+
+        reader.onerror = () => reject(new Error("Could not read file"));
+
+        reader.onload = (e) => {
+
+            const img = new Image();
+
+            img.onerror = () => reject(new Error("Could not load image"));
+
+            img.onload = () => {
+
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxDimension || height > maxDimension) {
+                    if (width > height) {
+                        height = Math.round(height * (maxDimension / width));
+                        width = maxDimension;
+                    } else {
+                        width = Math.round(width * (maxDimension / height));
+                        height = maxDimension;
+                    }
+                }
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                resolve(canvas.toDataURL("image/jpeg", quality));
+
+            };
+
+            img.src = e.target.result;
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
 function previewProductImage(event) {
 
     const file =
@@ -1981,14 +2103,9 @@ function previewProductImage(event) {
     }
 
 
-    const reader =
-        new FileReader();
+    compressImageFile(file, 900, 0.8).then(dataUrl => {
 
-
-    reader.onload = function(e) {
-
-        selectedProductImage =
-            e.target.result;
+        selectedProductImage = dataUrl;
 
 
         const preview =
@@ -2010,10 +2127,13 @@ function previewProductImage(event) {
         ).style.display =
             "none";
 
-    };
+    }).catch(() => {
 
+        alert(
+            "Could not process that photo. Please try a different image."
+        );
 
-    reader.readAsDataURL(file);
+    });
 
 }
 
@@ -2111,24 +2231,44 @@ function addProduct() {
 
     products.unshift(product);
 
-    saveProducts();
-
-
     renderProducts();
 
     updateAdminDashboard();
 
-
     message.textContent =
-        "Product added successfully ♡";
+        "Saving...";
 
+    saveProducts().then(() => {
 
-    setTimeout(() => {
+        message.textContent =
+            "Product added successfully ♡";
 
-        closeAddProduct();
-        closeProduct();
+        setTimeout(() => {
 
-    }, 800);
+            closeAddProduct();
+            closeProduct();
+
+        }, 800);
+
+    }).catch(() => {
+
+        /*
+           Save failed — undo the optimistic local add so the
+           product doesn't appear to exist when it never actually
+           reached the cloud (this is exactly what caused it to
+           vanish again on refresh).
+        */
+
+        products = products.filter(item => item.id !== product.id);
+
+        renderProducts();
+
+        updateAdminDashboard();
+
+        message.textContent =
+            "Could not save — check your internet connection and try again.";
+
+    });
 
 }
 
@@ -2178,7 +2318,7 @@ function editProductSale(productId) {
     product.salePrice = salePrice.trim() ? numericSalePrice : null;
     product.saleLabel = saleLabel.trim();
 
-    saveProducts();
+    saveProducts().catch(() => {});
     renderProducts();
     updateAdminDashboard();
 }
