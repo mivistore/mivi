@@ -3526,6 +3526,62 @@ footer p {
 }
 
 
+.admin-topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.cloud-sync-status {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    padding: 8px 14px;
+
+    border-radius: 50px;
+
+    opacity: 0;
+
+    transition: opacity .2s ease;
+}
+
+
+.cloud-sync-status.saving {
+
+    opacity: 1;
+
+    color: var(--text-light);
+
+    background: var(--pink-light);
+}
+
+
+.cloud-sync-status.saved {
+
+    opacity: 1;
+
+    color: var(--pink-dark);
+
+    background: var(--pink-light);
+}
+
+
+.cloud-sync-status.error {
+
+    opacity: 1;
+
+    color: #7d3d4c;
+
+    background: #f3d7dc;
+}
+
+
 .admin-section {
 
     display: none;
