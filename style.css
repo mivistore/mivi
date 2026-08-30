@@ -105,6 +105,50 @@ a {
    LOADING
 ========================================================= */
 
+.connection-warning {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    z-index: 10000;
+
+    background: #7d3d4c;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    text-align: center;
+}
+
+
+.connection-warning-detail {
+
+    font-weight: 400;
+
+    opacity: .8;
+
+    font-size: 11px;
+}
+
+
 .loading-screen {
 
     position: fixed;
