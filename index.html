@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MIVI — Handmade With Love</title>
+
+    <meta name="description"
+          content="MIVI handmade crochet creations — cute things made with wool and love.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css?v=20260829d">
+</head>
+
+<body>
+
+<!-- =========================================================
+     LOADING
+========================================================= -->
+
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-logo">MIVI</div>
+    <div class="loading-yarn"></div>
+    <p>Made with love 🧶</p>
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        <span class="logo-main">MIVI</span>
+        <span class="logo-sub">handmade with love</span>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+
+        <button class="nav-icon-btn" onclick="openCart()" aria-label="Shopping cart">
+            🛍️
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="account-btn" id="accountBtn" onclick="handleAccountClick()">
+            Account
+        </button>
+
+        <button class="menu-btn" onclick="toggleMobileMenu()">
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div id="mobileMenu" class="mobile-menu">
+
+    <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+
+    <a href="#home" onclick="toggleMobileMenu()">Home</a>
+    <a href="#shop" onclick="toggleMobileMenu()">Shop</a>
+    <a href="#about" onclick="toggleMobileMenu()">Our Story</a>
+    <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+
+    <a
+        href="javascript:void(0)"
+        id="mobileAccountLink"
+        onclick="toggleMobileMenu(); handleAccountClick();"
+    >
+        Account
+    </a>
+
+</div>
+
+
+<!-- =========================================================
+     TAKE AWAY NOTICE
+========================================================= -->
+
+<div class="takeaway-top">
+
+    <div class="takeaway-icon">🧶</div>
+
+    <div>
+        <strong>TAKE-AWAY ONLY</strong>
+        <span>
+            MIVI currently does not provide delivery.
+            Please collect your handmade order.
+        </span>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-background-shape shape-one"></div>
+    <div class="hero-background-shape shape-two"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-small-title">
+            ✦ HANDMADE • UNIQUE • LOVINGLY MADE ✦
+        </div>
+
+        <h1>
+            Little things,
+            <br>
+            <span>made with love.</span>
+        </h1>
+
+        <p>
+            Cute crochet treasures handcrafted with soft yarn,
+            happy colours and a whole lot of love.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#shop" class="primary-btn">
+                Explore Collection
+                <span>→</span>
+            </a>
+
+            <a href="#about" class="secondary-btn">
+                Our Story
+            </a>
+
+        </div>
+
+        <div class="hero-trust">
+
+            <div>
+                <span>✦</span>
+                Handmade
+            </div>
+
+            <div>
+                <span>✦</span>
+                Made with Love
+            </div>
+
+            <div>
+                <span>✦</span>
+                One of a Kind
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PHOTO UPLOAD
+    ====================================================== -->
+
+    <div class="cat-scene">
+
+        <div class="scene-glow"></div>
+
+        <div id="heroPhotoUpload" class="photo-upload-box">
+            <span class="photo-upload-icon">＋</span>
+            <strong id="heroPhotoTitle">Featured photo</strong>
+            <span id="heroPhotoHint">Managed from the admin dashboard</span>
+
+            <img id="heroPhotoPreview" class="photo-upload-preview" alt="Your uploaded photo">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SHOP
+========================================================= -->
+
+<section id="shop" class="shop-section">
+
+    <div class="section-heading">
+
+        <span class="eyebrow">OUR LITTLE COLLECTION</span>
+
+        <h2>
+            Made to make
+            <em>you smile.</em>
+        </h2>
+
+        <p>
+            Every piece is handmade slowly and carefully.
+            No two creations are exactly alike.
+        </p>
+
+        <div class="customer-sale-banner">
+            <span class="eyebrow">CURRENT SALE</span>
+            <strong id="customerSaleIdea">Weekend bundle: save 10% when you choose any two handmade pieces.</strong>
+        </div>
+
+    </div>
+
+
+    <div id="productGrid" class="product-grid">
+        <!-- Products generated by JavaScript -->
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about" class="about-section">
+
+    <div class="about-card">
+
+        <div class="about-image">
+
+            <div class="about-yarn yarn-pink"></div>
+            <div class="about-yarn yarn-blue"></div>
+            <div class="about-yarn yarn-white"></div>
+
+            <span class="about-floating">♡</span>
+
+        </div>
+
+        <div class="about-content">
+
+            <span class="eyebrow">THE MIVI STORY</span>
+
+            <h2>
+                Handmade isn't
+                <em>just a product.</em>
+            </h2>
+
+            <p>
+                MIVI was created for people who love tiny,
+                beautiful things that feel personal.
+            </p>
+
+            <p>
+                Every crochet piece is made by hand,
+                one loop at a time. We believe handmade
+                products carry something special —
+                the time, care and love behind them.
+            </p>
+
+            <div class="signature">
+                Made with ♡ by MIVI
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INSTAGRAM
+========================================================= -->
+
+<section class="instagram-section">
+
+    <div class="instagram-card">
+
+        <div class="instagram-icon">◎</div>
+
+        <span>FOLLOW OUR LITTLE WORLD</span>
+
+        <h2>@crochet_byharvi</h2>
+
+        <p>
+            See our latest crochet creations,
+            behind-the-scenes moments and cute things.
+        </p>
+
+        <a
+            href="https://www.instagram.com/crochet_byharvi/"
+            target="_blank"
+            rel="noopener"
+            class="instagram-btn"
+        >
+            Visit Instagram →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact" class="contact-section">
+
+    <div class="section-heading">
+
+        <span class="eyebrow">SAY HELLO</span>
+
+        <h2>
+            Let's make something
+            <em>cute.</em>
+        </h2>
+
+        <p>
+            Have a question about an order?
+            We'd love to hear from you.
+        </p>
+
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="contact-box">
+            <span>Instagram</span>
+            <a
+                href="https://www.instagram.com/crochet_byharvi/"
+                target="_blank"
+            >
+                @crochet_byharvi
+            </a>
+        </div>
+
+        <div class="contact-box">
+            <span>Pickup</span>
+            <strong>Take-away only</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        MIVI
+        <span>handmade with love</span>
+    </div>
+
+    <p>
+        © 2026 MIVI. Crafted with 🧶 & ♡
+    </p>
+
+    <button class="admin-footer-btn" onclick="showAdminLogin()">
+        Admin Login
+    </button>
+
+</footer>
+
+
+<!-- =========================================================
+     CART DRAWER
+========================================================= -->
+
+<div id="cartOverlay" class="modal-overlay" onclick="closeCart()"></div>
+
+<aside id="cartDrawer" class="cart-drawer">
+
+    <div class="drawer-header">
+
+        <div>
+            <span class="drawer-eyebrow">YOUR COLLECTION</span>
+            <h2>Your Cart</h2>
+        </div>
+
+        <button onclick="closeCart()" class="close-btn">×</button>
+
+    </div>
+
+    <div id="cartItems" class="cart-items">
+        <!-- Cart -->
+    </div>
+
+    <div id="emptyCart" class="empty-cart">
+        <div>🧶</div>
+        <h3>Your basket is empty</h3>
+        <p>Let's find something cute.</p>
+    </div>
+
+    <div class="cart-bottom">
+
+        <div class="cart-total-row">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="openCheckout()"
+        >
+            Continue to Order →
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     LOGIN MODAL
+========================================================= -->
+
+<div id="loginModal" class="modal-overlay">
+
+    <div class="modal-box login-box">
+
+        <button class="modal-close" onclick="closeLogin()">×</button>
+
+        <div class="modal-logo">MIVI</div>
+
+        <span class="eyebrow">WELCOME BACK</span>
+
+        <h2>Welcome to MIVI ♡</h2>
+
+        <p class="modal-description">
+            Login to continue your handmade journey.
+        </p>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="your@email.com"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Your password"
+            >
+        </div>
+
+        <button class="primary-btn full-btn" onclick="loginUser()">
+            Login
+        </button>
+
+        <button class="text-btn" onclick="showCreateAccount()">
+            New here? Create an account
+        </button>
+
+        <p id="loginMessage" class="form-message"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CREATE ACCOUNT
+========================================================= -->
+
+<div id="createAccountModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <button class="modal-close" onclick="closeCreateAccount()">×</button>
+
+        <div class="modal-logo">MIVI</div>
+
+        <span class="eyebrow">CREATE YOUR ACCOUNT</span>
+
+        <h2>Join our little world ♡</h2>
+
+        <p class="modal-description">
+            OTP will be connected later.
+            For now, create a demo account.
+        </p>
+
+        <div class="input-group">
+            <label>Your Name</label>
+            <input
+                type="text"
+                id="createName"
+                placeholder="Your name"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input
+                type="email"
+                id="createEmail"
+                placeholder="your@email.com"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input
+                type="tel"
+                id="createPhone"
+                placeholder="+91 XXXXX XXXXX"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                type="password"
+                id="createPassword"
+                placeholder="Create a password"
+            >
+        </div>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="createAccount()"
+        >
+            Create Account
+        </button>
+
+        <p id="createMessage" class="form-message"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+
+<div id="adminLoginModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <button class="modal-close" onclick="closeAdminLogin()">×</button>
+
+        <div class="admin-lock">♛</div>
+
+        <span class="eyebrow">PRIVATE AREA</span>
+
+        <h2>Admin Login</h2>
+
+        <p class="modal-description">
+            Access the MIVI management dashboard.
+        </p>
+
+        <div class="input-group">
+            <label>Admin ID</label>
+            <input
+                type="text"
+                id="adminEmail"
+                placeholder="miviadmin"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Admin password"
+            >
+        </div>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="loginAdmin()"
+        >
+            Enter Dashboard
+        </button>
+
+        <p class="demo-login">
+            Demo: miviadmin / miviadmin
+        </p>
+
+        <p id="adminMessage" class="form-message"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CHECKOUT
+========================================================= -->
+
+<div id="checkoutModal" class="modal-overlay">
+
+    <div class="modal-box checkout-box">
+
+        <button class="modal-close" onclick="closeCheckout()">×</button>
+
+        <div class="checkout-icon">🧺</div>
+
+        <span class="eyebrow">FINAL STEP</span>
+
+        <h2>Place your order</h2>
+
+        <div class="takeaway-checkout">
+
+            <strong>🧶 TAKE-AWAY ONLY</strong>
+
+            <p>
+                We currently cannot deliver orders.
+                Please collect your order from our pickup location.
+            </p>
+
+        </div>
+
+        <div class="input-group">
+            <label>Your Name *</label>
+            <input
+                type="text"
+                id="orderName"
+                placeholder="Enter your name"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Instagram ID</label>
+            <input
+                type="text"
+                id="orderInstagram"
+                placeholder="@yourinstagram (optional)"
+            >
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number *</label>
+            <input
+                type="tel"
+                id="orderPhone"
+                placeholder="+91 XXXXX XXXXX (or use Instagram above)"
+            >
+        </div>
+
+        <div class="order-mini-total">
+            <span>Order total</span>
+            <strong id="checkoutTotal">₹0</strong>
+        </div>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="placeOrder()"
+        >
+            Place Order ♡
+        </button>
+
+        <p id="checkoutMessage" class="form-message"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ORDER SUCCESS
+========================================================= -->
+
+<div id="successModal" class="modal-overlay">
+
+    <div class="modal-box success-box">
+
+        <div class="success-animation">
+            ♡
+        </div>
+
+        <span class="eyebrow">ORDER RECEIVED</span>
+
+        <h2>Thank you! 🧶</h2>
+
+        <p>
+            Your MIVI order has been placed successfully.
+        </p>
+
+        <div class="success-order-summary">
+            <div class="success-order-id">
+                Order ID: <strong id="successOrderId">—</strong>
+            </div>
+            <div id="successOrderItems" class="success-order-items"></div>
+            <div class="success-order-total">
+                <span>Total</span>
+                <strong id="successOrderTotal">₹0</strong>
+            </div>
+        </div>
+
+        <div class="success-note">
+
+            <strong>For further information:</strong>
+
+            <p>
+                We will contact you through your Instagram,
+                phone number or email.
+            </p>
+
+            <a
+                href="https://www.instagram.com/crochet_byharvi/"
+                target="_blank"
+            >
+                @crochet_byharvi →
+            </a>
+
+        </div>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="closeSuccess()"
+        >
+            Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CUSTOMER PROFILE
+========================================================= -->
+
+<div id="profileModal" class="modal-overlay">
+
+    <div class="modal-box profile-box">
+
+        <button class="modal-close" onclick="closeProfile()">×</button>
+
+        <div class="modal-logo">MIVI</div>
+
+        <span class="eyebrow">YOUR ACCOUNT</span>
+
+        <h2 id="profileName">—</h2>
+
+        <div class="profile-details">
+
+            <div class="profile-detail-row">
+                <span>Email</span>
+                <strong id="profileEmail">—</strong>
+            </div>
+
+            <div class="profile-detail-row">
+                <span>Phone</span>
+                <strong id="profilePhone">—</strong>
+            </div>
+
+            <div class="profile-detail-row">
+                <span>Instagram</span>
+                <strong id="profileInstagram">—</strong>
+            </div>
+
+        </div>
+
+        <span class="eyebrow profile-orders-heading">YOUR ORDERS</span>
+
+        <div id="profileOrders" class="profile-orders-list"></div>
+
+        <button class="text-btn profile-logout-btn" onclick="logoutCustomer()">
+            Log out
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ADMIN DASHBOARD
+========================================================= -->
+
+<div id="adminDashboard" class="admin-dashboard">
+
+    <div class="admin-sidebar">
+
+        <div class="admin-brand">
+            <strong>MIVI</strong>
+            <span>ADMIN STUDIO</span>
+        </div>
+
+        <nav>
+
+            <button
+                class="admin-nav active"
+                onclick="showAdminSection('overview', this)"
+            >
+                <span>◈</span>
+                Overview
+            </button>
+
+            <button
+                class="admin-nav"
+                onclick="showAdminSection('products', this)"
+            >
+                <span>✿</span>
+                Products
+            </button>
+
+            <button
+                class="admin-nav"
+                onclick="showAdminSection('orders', this)"
+            >
+                <span>▣</span>
+                Orders
+            </button>
+
+            <button
+                class="admin-nav"
+                onclick="showAdminSection('customers', this)"
+            >
+                <span>♡</span>
+                Customers
+            </button>
+
+            <button
+                class="admin-nav"
+                onclick="showAdminSection('settings', this)"
+            >
+                <span>⚙</span>
+                Settings
+            </button>
+
+        </nav>
+
+        <button class="admin-logout" onclick="adminLogout()">
+            ↪ Logout
+        </button>
+
+    </div>
+
+
+    <main class="admin-main">
+
+        <div class="admin-topbar">
+
+            <div>
+                <span class="eyebrow">MIVI MANAGEMENT</span>
+                <h1>Good morning, Admin ♡</h1>
+            </div>
+
+            <button onclick="adminLogout()" class="admin-top-logout">
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- OVERVIEW -->
+
+        <section id="adminOverview" class="admin-section active">
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-icon">₹</span>
+                    <div>
+                        <small>Total Sales</small>
+                        <strong id="statSales">₹0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">▣</span>
+                    <div>
+                        <small>Total Orders</small>
+                        <strong id="statOrders">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">◷</span>
+                    <div>
+                        <small>Pending Orders</small>
+                        <strong id="statPending">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">✿</span>
+                    <div>
+                        <small>Products</small>
+                        <strong id="statProducts">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="admin-content-grid">
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">RECENT ACTIVITY</span>
+                            <h2>Recent Orders</h2>
+                        </div>
+
+                        <button
+                            class="small-btn"
+                            onclick="showAdminSectionById('orders')"
+                        >
+                            View all
+                        </button>
+                    </div>
+
+                    <div id="recentOrders"></div>
+
+                </div>
+
+
+                <div class="dashboard-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">QUICK ACTION</span>
+                            <h2>Grow MIVI</h2>
+                        </div>
+                    </div>
+
+                    <button
+                        class="quick-action"
+                        onclick="openAddProduct()"
+                    >
+                        <span>＋</span>
+                        <div>
+                            <strong>Add new product</strong>
+                            <small>Create a new crochet listing</small>
+                        </div>
+                    </button>
+
+                    <button
+                        class="quick-action"
+                        onclick="showAdminSectionById('orders')"
+                    >
+                        <span>▣</span>
+                        <div>
+                            <strong>Check orders</strong>
+                            <small>View customer information</small>
+                        </div>
+                    </button>
+
+                    <div class="sale-idea">
+                        <span class="eyebrow">SALE IDEA</span>
+                        <input id="saleIdeaInput" type="text" placeholder="Write a sale idea for customers">
+                        <button class="small-btn" onclick="saveSaleIdea()">Show on shop</button>
+                    </div>
+
+                    <div class="featured-photo-admin">
+                        <span class="eyebrow">FEATURED PHOTO</span>
+                        <label class="image-upload">
+                            <input
+                                type="file"
+                                id="adminHeroPhoto"
+                                accept="image/*"
+                                onchange="previewHeroPhoto(event)"
+                            >
+                            <span id="adminHeroPhotoText">🖼️ Upload hero photo</span>
+                            <img
+                                id="adminHeroPhotoPreview"
+                                class="image-preview"
+                                alt="Featured hero preview"
+                            >
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTS -->
+
+        <section id="adminProducts" class="admin-section">
+
+            <div class="admin-section-title">
+
+                <div>
+                    <span class="eyebrow">MIVI COLLECTION</span>
+                    <h2>Products</h2>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="openAddProduct()"
+                >
+                    + Add Product
+                </button>
+
+            </div>
+
+            <div id="adminProductList" class="admin-product-list"></div>
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section id="adminOrders" class="admin-section">
+
+            <div class="admin-section-title">
+
+                <div>
+                    <span class="eyebrow">CUSTOMER ACTIVITY</span>
+                    <h2>Orders</h2>
+                </div>
+
+            </div>
+
+            <div id="adminOrdersList" class="orders-list"></div>
+
+        </section>
+
+
+        <!-- CUSTOMERS -->
+
+        <section id="adminCustomers" class="admin-section">
+
+            <div class="admin-section-title">
+
+                <div>
+                    <span class="eyebrow">YOUR MIVI COMMUNITY</span>
+                    <h2>Customers</h2>
+                </div>
+
+            </div>
+
+            <div id="adminCustomersList" class="customers-list"></div>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+
+        <section id="adminSettings" class="admin-section">
+
+            <div class="admin-section-title">
+
+                <div>
+                    <span class="eyebrow">ADMIN CONTROL</span>
+                    <h2>Settings</h2>
+                </div>
+
+            </div>
+
+            <div class="settings-card">
+
+                <h3>Admin Account</h3>
+
+                <div class="input-group">
+                    <label>Admin ID</label>
+                    <input
+                        type="text"
+                        id="settingsAdminId"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>New Password</label>
+                    <input
+                        type="password"
+                        id="settingsAdminPassword"
+                        placeholder="Enter new password"
+                    >
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="changeAdminPassword()"
+                >
+                    Save Changes
+                </button>
+
+                <p id="settingsMessage" class="form-message"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     ADD PRODUCT MODAL
+========================================================= -->
+
+<div id="addProductModal" class="modal-overlay">
+
+    <div class="modal-box product-modal">
+
+        <button class="modal-close" onclick="closeAddProduct()">×</button>
+
+        <span class="eyebrow">MIVI ADMIN</span>
+
+        <h2>Add a new product</h2>
+
+        <p class="modal-description">
+            Give your handmade creation a little place in the MIVI shop.
+        </p>
+
+
+        <div class="input-group">
+
+            <label>Product Name *</label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="e.g. Pink Bunny"
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Product Image *</label>
+
+            <label class="image-upload">
+
+                <input
+                    type="file"
+                    id="productImage"
+                    accept="image/*"
+                    onchange="previewProductImage(event)"
+                >
+
+                <span id="uploadText">
+                    🖼️ Click to choose an image
+                </span>
+
+                <img
+                    id="imagePreview"
+                    class="image-preview"
+                    alt="Product preview"
+                >
+
+            </label>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>Price *</label>
+
+            <div class="price-input">
+
+                <span>₹</span>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    min="0"
+                    placeholder="500"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+                <label>Product Description / Comment</label>
+
+            <textarea
+                id="productDescription"
+                placeholder="Tell customers something cute about this product..."
+            ></textarea>
+
+        </div>
+
+        <div class="product-sale-fields">
+            <div class="input-group">
+                <label>Sale Price (optional)</label>
+                <div class="price-input">
+                    <span>₹</span>
+                    <input type="number" id="productSalePrice" min="0" placeholder="Leave empty for regular price">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Sale Label (optional)</label>
+                <input type="text" id="productSaleLabel" placeholder="e.g. 20% OFF">
+            </div>
+        </div>
+
+
+        <button
+            class="primary-btn full-btn"
+            onclick="addProduct()"
+        >
+            Add Product ♡
+        </button>
+
+        <p id="productMessage" class="form-message"></p>
+
+    </div>
+
+</div>
+
+
+<div id="productDetailModal" class="modal-overlay">
+    <div class="modal-box product-detail-modal">
+        <button class="modal-close" onclick="closeProduct()">×</button>
+        <div id="productDetailContent" class="product-detail-content"></div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     CUSTOM CONFIRM
+========================================================= -->
+
+<div id="confirmModal" class="modal-overlay">
+    <div class="modal-box confirm-box">
+        <div class="confirm-icon">⚠</div>
+        <h3 id="confirmMessage">Are you sure?</h3>
+        <div class="confirm-actions">
+            <button class="secondary-btn" onclick="closeConfirm()">Cancel</button>
+            <button class="order-delete-btn" id="confirmActionBtn">Delete</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<script src="script.js?v=20260829d"></script>
+
+</body>
+</html>
