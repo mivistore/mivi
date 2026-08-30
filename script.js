@@ -382,6 +382,31 @@ function startLiveSync() {
 }
 
 
+function checkFirebaseConnection() {
+
+    db.collection("settings").doc("connection-check").set({
+        checkedAt: new Date().toISOString()
+    }).then(() => {
+
+        const banner = document.getElementById("connectionWarning");
+        if (banner) banner.style.display = "none";
+
+    }).catch(error => {
+
+        console.error("Firebase connection check failed:", error);
+
+        const banner = document.getElementById("connectionWarning");
+        if (banner) {
+            banner.style.display = "flex";
+            const detail = document.getElementById("connectionWarningDetail");
+            if (detail) detail.textContent = String(error && error.message || error);
+        }
+
+    });
+
+}
+
+
 /* =========================================================
    PAGE START
 ========================================================= */
@@ -389,6 +414,8 @@ function startLiveSync() {
 document.addEventListener("DOMContentLoaded", () => {
 
     startLiveSync();
+
+    checkFirebaseConnection();
 
     setTimeout(() => {
 
