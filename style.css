@@ -1,32 +1,32 @@
 /* =========================================================
-   MIVI — PREMIUM CROCHET WEBSITE
+   MIHA — PREMIUM CROCHET WEBSITE
 ========================================================= */
 
 :root {
 
-    --pink: #f9d1d9;
-    --pink-light: #f1f4e8;
-    --pink-soft: #dfe6c9;
-    --pink-dark: #687343;
+    --pink: #f7c7d2;
+    --pink-light: #fff0f4;
+    --pink-soft: #ffdce5;
+    --pink-dark: #d00000;
 
-    --blue: #838f58;
-    --blue-light: #eef2e3;
-    --blue-soft: #dfe6c9;
-    --blue-dark: #687343;
+    --blue: #e77b8d;
+    --blue-light: #fff5f7;
+    --blue-soft: #ffdce5;
+    --blue-dark: #9d0010;
 
-    --cream: #e8edd8;
-    --white: #fff7f8;
+    --cream: #fff8fa;
+    --white: #ffffff;
 
-    --text: #3c3440;
-    --text-light: #756b75;
+    --text: #3f151b;
+    --text-light: #765861;
 
-    --dark: #302936;
+    --dark: #57000b;
 
     --shadow:
-        0 25px 70px rgba(80, 60, 80, 0.12);
+        0 25px 70px rgba(120, 0, 20, 0.13);
 
     --shadow-soft:
-        0 15px 40px rgba(80, 60, 80, 0.09);
+        0 15px 40px rgba(120, 0, 20, 0.09);
 
     --radius: 28px;
 }
@@ -117,7 +117,7 @@ a {
 
     z-index: 10000;
 
-    background: #7d3d4c;
+    background: #8f0012;
 
     color: white;
 
@@ -248,7 +248,7 @@ a {
 
     backdrop-filter: blur(22px);
 
-    border-bottom: 1px solid rgba(60,52,64,.06);
+    border-bottom: 1px solid rgba(100,0,15,.08);
 }
 
 
@@ -675,8 +675,8 @@ a {
     background:
         linear-gradient(
             135deg,
-            #7f8b4d,
-            #62713d
+            #d00000,
+            #9d0010
         );
 
     color: white;
@@ -686,7 +686,7 @@ a {
     letter-spacing: 0.02em;
 
     box-shadow:
-        0 18px 40px rgba(110,128,72,.25);
+        0 18px 40px rgba(208,0,0,.24);
 
     transition: .3s;
 
@@ -701,7 +701,7 @@ a {
     transform: translateY(-4px);
 
     box-shadow:
-        0 20px 45px rgba(217,154,168,.38);
+        0 20px 45px rgba(208,0,0,.28);
 }
 
 
@@ -717,7 +717,7 @@ a {
 
     border-radius: 50px;
 
-    border: 1px solid rgba(60,52,64,.15);
+    border: 1px solid rgba(120,0,20,.16);
 
     background: rgba(255,255,255,.6);
 
@@ -985,7 +985,7 @@ a {
             circle at 32% 27%,
             #fff,
             var(--pink-soft) 12%,
-            #efb8c4 48%,
+            #ef9dad 48%,
             var(--pink-dark) 100%
         );
 
@@ -1020,7 +1020,7 @@ a {
 
     position: absolute;
 
-    border: 3px solid rgba(185,112,130,.5);
+    border: 3px solid rgba(160,20,40,.42);
 
     border-radius: 50%;
 }
@@ -1067,7 +1067,7 @@ a {
     width: 260px;
     height: 150px;
 
-    border-bottom: 5px solid rgba(217,154,168,.75);
+    border-bottom: 5px solid rgba(208,0,0,.55);
 
     border-radius: 50%;
 
@@ -1147,8 +1147,8 @@ a {
         linear-gradient(
             135deg,
             #fff,
-            #f7e8e8 60%,
-            #e9d5d7
+            #fff0f4 60%,
+            #ffdbe3
         );
 
     box-shadow:
@@ -1193,7 +1193,7 @@ a {
         linear-gradient(
             145deg,
             #fff,
-            #eadcde
+            #ffe6eb
         );
 
     box-shadow:
@@ -1233,8 +1233,8 @@ a {
         radial-gradient(
             circle at 35% 25%,
             #fff,
-            #f8ebec 50%,
-            #e4d1d4
+            #fff0f4 50%,
+            #ffdce4
         );
 
     box-shadow:
@@ -1255,8 +1255,8 @@ a {
     background:
         linear-gradient(
             145deg,
-            #f8ecee,
-            #dfc8cc
+            #fff2f5,
+            #f2c3cc
         );
 
     clip-path: polygon(
@@ -1290,7 +1290,7 @@ a {
 
     top: -30px;
 
-    background: #efb8ca;
+    background: #f08fa2;
 
     clip-path: polygon(
         50% 0,
@@ -1325,7 +1325,7 @@ a {
 
     border-radius: 50%;
 
-    background: #423742;
+    background: #4a151c;
 
     box-shadow:
         inset 5px 5px 5px rgba(255,255,255,.45);
@@ -1365,7 +1365,7 @@ a {
     width: 15px;
     height: 12px;
 
-    background: #d47e9d;
+    background: #d00000;
 
     border-radius:
         50%
@@ -1455,7 +1455,7 @@ a {
         linear-gradient(
             145deg,
             #fff,
-            #e7dadd
+            #f5d4dc
         );
 
     top: 205px;
@@ -1753,7 +1753,7 @@ a {
     background: rgba(255,255,255,.78);
 
     border:
-        1px solid rgba(60,52,64,.06);
+        1px solid rgba(100,0,15,.08);
 
     border-radius: var(--radius);
 
@@ -1908,7 +1908,7 @@ a {
     max-width: 680px;
     margin: 22px auto 0;
     padding: 13px 18px;
-    border: 1px solid rgba(217,154,168,.2);
+    border: 1px solid rgba(208,0,0,.18);
     border-radius: 14px;
     background: rgba(255,240,245,.65);
 }
@@ -2048,7 +2048,7 @@ a {
     width: 100%;
     margin: 10px 0;
     padding: 10px 12px;
-    border: 1px solid rgba(60,52,64,.12);
+    border: 1px solid rgba(120,0,20,.14);
     border-radius: 10px;
     background: white;
 }
@@ -2698,9 +2698,9 @@ footer p {
 
     place-items: center;
 
-    background: #f3d7dc;
+    background: #ffd6df;
 
-    color: #7d3d4c;
+    color: #8f0012;
 
     font-size: 26px;
 }
@@ -2761,7 +2761,7 @@ footer p {
 
     width: 100%;
 
-    border: 1px solid rgba(60,52,64,.12);
+    border: 1px solid rgba(120,0,20,.14);
 
     background: rgba(255,255,255,.8);
 
@@ -3098,7 +3098,7 @@ footer p {
 
     font-size: 13px;
 
-    border-bottom: 1px dashed rgba(60,52,64,.12);
+    border-bottom: 1px dashed rgba(120,0,20,.14);
 }
 
 
@@ -3620,9 +3620,9 @@ footer p {
 
     opacity: 1;
 
-    color: #7d3d4c;
+    color: #8f0012;
 
-    background: #f3d7dc;
+    background: #ffd6df;
 }
 
 
@@ -4337,9 +4337,9 @@ footer p {
 
 .order-delete-btn {
 
-    background: #f3d7dc;
+    background: #ffd6df;
 
-    color: #7d3d4c;
+    color: #8f0012;
 }
 
 
@@ -4653,4 +4653,652 @@ footer p {
 ::-webkit-scrollbar-thumb:hover {
 
     background: var(--pink-dark);
+}
+/* =========================================================
+   MIHA BRAND REFRESH — RED / BLUSH / CREAM / GOLD
+========================================================= */
+
+:root {
+    --gold: #d9a400;
+}
+
+.navbar {
+    background: rgba(255, 248, 250, .88);
+    box-shadow: 0 8px 30px rgba(110, 0, 20, .06);
+}
+
+.logo {
+    position: relative;
+    align-items: flex-start;
+}
+
+.logo-main {
+    color: var(--pink-dark);
+    line-height: 1;
+}
+
+.logo-sub {
+    color: var(--gold);
+}
+
+.nav-brand-image {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 11px;
+    margin-right: 9px;
+    box-shadow: 0 8px 20px rgba(120,0,20,.12);
+}
+
+.logo {
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo .logo-sub {
+    position: absolute;
+    left: 52px;
+    top: 34px;
+    white-space: nowrap;
+}
+
+.loading-brand-image {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 28px;
+    box-shadow: 0 22px 60px rgba(120, 0, 20, .18);
+}
+
+.loading-screen {
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,.95), transparent 30%),
+        linear-gradient(145deg, #fff0f4 0%, #ffd2dc 48%, #fff7f8 100%);
+}
+
+.loading-yarn {
+    border-color: rgba(208,0,0,.18);
+    border-top-color: var(--pink-dark);
+}
+
+.hero {
+    background:
+        radial-gradient(circle at 82% 30%, rgba(208,0,0,.07), transparent 28%),
+        radial-gradient(circle at 18% 75%, rgba(217,164,0,.08), transparent 24%);
+}
+
+.hero h1 span,
+.section-heading h2 em,
+.eyebrow {
+    color: var(--pink-dark);
+}
+
+.hero-small-title {
+    color: var(--gold);
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #d90000, #a80012);
+    box-shadow: 0 18px 40px rgba(180,0,20,.24);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 22px 48px rgba(180,0,20,.30);
+}
+
+.secondary-btn:hover {
+    border-color: rgba(208,0,0,.25);
+}
+
+.photo-upload-box {
+    border-color: rgba(208,0,0,.48);
+    background:
+        linear-gradient(145deg, rgba(255,235,241,.92), rgba(255,205,216,.72));
+    box-shadow:
+        0 30px 70px rgba(120,0,20,.16),
+        inset 0 0 0 10px rgba(255,255,255,.34);
+}
+
+.photo-upload-icon {
+    background: var(--pink-dark);
+    color: #fff0f4;
+}
+
+.photo-upload-preview {
+    object-fit: contain;
+    background: #fbcbd5;
+}
+
+.product-image {
+    background: linear-gradient(135deg, #fff0f4, #ffd9e2);
+}
+
+.product-card:hover {
+    box-shadow: 0 30px 75px rgba(120,0,20,.15);
+}
+
+.sale-label {
+    background: #fff0b8;
+    color: #8d6500;
+}
+
+.customer-sale-banner {
+    border-color: rgba(217,164,0,.28);
+    background: rgba(255,247,216,.72);
+}
+
+.instagram-card {
+    background:
+        linear-gradient(135deg, rgba(255,205,216,.72), rgba(255,242,205,.88));
+}
+
+.instagram-card h2 {
+    color: var(--pink-dark);
+}
+
+.contact-box {
+    border: 1px solid rgba(208,0,0,.07);
+}
+
+.contact-box span {
+    color: var(--pink-dark);
+}
+
+footer {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(208,0,0,.22), transparent 35%),
+        var(--dark);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 2px;
+}
+
+.footer-logo img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+}
+
+.footer-logo span {
+    color: #ffd36b;
+}
+
+.modal-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--pink-dark);
+}
+
+.modal-logo img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.modal-logo span {
+    font-family: "Playfair Display", serif;
+    font-size: 35px;
+    letter-spacing: 5px;
+}
+
+.admin-brand strong {
+    color: var(--pink-dark);
+}
+
+.admin-nav.active,
+.admin-nav:hover {
+    color: var(--pink-dark);
+}
+
+.admin-sidebar {
+    background: linear-gradient(180deg, #fff8fa, #fff0f4);
+    border-right: 1px solid rgba(208,0,0,.08);
+}
+
+@media (max-width: 650px) {
+    .loading-brand-image {
+        width: 155px;
+        height: 155px;
+    }
+
+    .nav-brand-image {
+        width: 38px;
+        height: 38px;
+    }
+
+    .logo .logo-sub {
+        left: 47px;
+        top: 31px;
+    }
+
+    .footer-logo img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* =========================================================
+   MIHA V3 — MINIMAL NAV + MULTI-IMAGE HERO SLIDESHOW
+========================================================= */
+
+:root {
+    --miha-red: #c90016;
+    --miha-red-dark: #8f0010;
+    --miha-pink: #ffc9d6;
+    --miha-pink-light: #fff1f5;
+    --miha-pink-soft: #ffe0e8;
+    --miha-gold: #d99a00;
+}
+
+/* Small circular logo + store name */
+.miha-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    min-width: 180px;
+}
+
+.miha-brand-circle {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    border: 2px solid rgba(201, 0, 22, .20);
+    box-shadow: 0 7px 18px rgba(120, 0, 20, .10);
+}
+
+.miha-brand-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.miha-brand-name {
+    color: var(--miha-red-dark);
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    white-space: nowrap;
+}
+
+/* Clean pink navbar — no large logo */
+.navbar {
+    height: 74px;
+    padding: 0 5.5%;
+    background: rgba(255, 249, 251, .94);
+    border-bottom: 1px solid rgba(201, 0, 22, .08);
+    box-shadow: 0 7px 25px rgba(120, 0, 20, .045);
+}
+
+.logo,
+.logo-main,
+.logo-sub {
+    display: none !important;
+}
+
+.desktop-nav a {
+    color: #6b3c45;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+    color: var(--miha-red);
+}
+
+.account-btn {
+    background: var(--miha-red-dark);
+}
+
+/* Remove old green/olive visual influence */
+.hero {
+    background:
+        radial-gradient(circle at 15% 25%, rgba(255, 190, 207, .32), transparent 27%),
+        radial-gradient(circle at 85% 65%, rgba(255, 210, 222, .42), transparent 30%),
+        linear-gradient(135deg, #fff9fb 0%, #fff0f4 50%, #ffe4eb 100%);
+}
+
+.hero-background-shape.shape-one,
+.hero-background-shape.shape-two {
+    background: #ffc8d6 !important;
+    opacity: .24 !important;
+}
+
+.hero-small-title {
+    color: var(--miha-red) !important;
+}
+
+.hero h1 {
+    color: var(--miha-red-dark);
+}
+
+.hero h1 span {
+    color: var(--miha-red) !important;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #d30018, #a90012) !important;
+}
+
+/* =========================================================
+   HERO MULTI-IMAGE SLIDESHOW
+========================================================= */
+
+.miha-slideshow {
+    width: min(470px, 100%);
+    height: 470px;
+    min-height: 470px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    border: 2px solid rgba(201, 0, 22, .20);
+    border-radius: 28px;
+    background: rgba(255, 249, 251, .80);
+    box-shadow: 0 28px 65px rgba(120, 0, 20, .12);
+    overflow: hidden;
+}
+
+.slideshow-header {
+    height: 72px;
+    flex: 0 0 72px;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    background: rgba(255, 255, 255, .55);
+    border-bottom: 1px solid rgba(201, 0, 22, .08);
+    z-index: 5;
+}
+
+.slideshow-header .photo-upload-icon {
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    font-size: 23px;
+    background: var(--miha-red);
+    color: #fff;
+}
+
+.slideshow-header strong {
+    display: block;
+    font-size: 17px;
+    color: var(--miha-red-dark);
+    line-height: 1.2;
+}
+
+.slideshow-header span:not(.photo-upload-icon) {
+    display: block;
+    margin-top: 3px;
+    color: #86606a;
+    font-size: 11px;
+}
+
+.slideshow-viewport {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    background: linear-gradient(145deg, #fff2f6, #ffdbe4);
+}
+
+.hero-slides-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.025);
+    transition: opacity .55s ease, transform .75s ease;
+    pointer-events: none;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: rgba(143, 0, 16, .78);
+    box-shadow: 0 8px 20px rgba(100, 0, 15, .18);
+    font-size: 31px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 4;
+    transition: transform .2s ease, background .2s ease;
+}
+
+.slide-arrow:hover {
+    transform: translateY(-50%) scale(1.06);
+    background: var(--miha-red);
+}
+
+.slide-prev { left: 14px; }
+.slide-next { right: 14px; }
+
+.slide-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    padding: 7px 10px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, .68);
+    backdrop-filter: blur(8px);
+    z-index: 5;
+}
+
+.slide-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(143, 0, 16, .30);
+    cursor: pointer;
+    transition: width .2s ease, background .2s ease;
+}
+
+.slide-dot.active {
+    width: 22px;
+    border-radius: 10px;
+    background: var(--miha-red);
+}
+
+/* Admin slideshow thumbnails */
+.admin-slides-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.admin-slide-thumb {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 0, 22, .16);
+    background: #ffe6ec;
+}
+
+.admin-slide-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-slide-thumb span {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    min-width: 20px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    color: white;
+    background: rgba(143, 0, 16, .80);
+    font-size: 10px;
+    text-align: center;
+}
+
+.admin-slide-thumb button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    color: var(--miha-red-dark);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.admin-help-text {
+    display: block;
+    margin-top: 8px;
+    color: #7a5a62;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Admin brand logo controls */
+.brand-setting-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 18px;
+    padding: 12px;
+    border-radius: 16px;
+    background: #fff1f5;
+}
+
+.brand-setting-circle {
+    width: 58px;
+    height: 58px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid rgba(201, 0, 22, .18);
+    background: #fff;
+}
+
+.brand-setting-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-setting-preview strong {
+    color: var(--miha-red-dark);
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        height: 68px;
+    }
+
+    .miha-brand {
+        min-width: 0;
+    }
+
+    .miha-brand-name {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .miha-slideshow {
+        width: min(450px, 100%);
+        height: 430px;
+        min-height: 430px;
+    }
+}
+
+@media (max-width: 600px) {
+    .miha-brand-circle {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .miha-brand-name {
+        font-size: 17px;
+    }
+
+    .miha-slideshow {
+        height: 360px;
+        min-height: 360px;
+        border-radius: 22px;
+    }
+
+    .slideshow-header {
+        height: 60px;
+        flex-basis: 60px;
+        padding: 9px 12px;
+    }
+
+    .slideshow-header .photo-upload-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 19px;
+    }
+
+    .slide-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 26px;
+    }
 }
