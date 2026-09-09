@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MIVI — Handmade With Love</title>
+    <title>MIHA — Handmade With Love</title>
 
     <meta name="description"
-          content="MIVI handmade crochet creations — cute things made with wool and love.">
+          content="MIHA handmade crochet creations — cute things made with wool and love.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
 ========================================================= -->
 
 <div id="loadingScreen" class="loading-screen">
-    <div class="loading-logo">MIVI</div>
+    <img class="loading-brand-image" src="assets/miha-logo.png" alt="MIHA logo">
     <div class="loading-yarn"></div>
     <p>Made with love 🧶</p>
 </div>
@@ -49,9 +49,11 @@
 
 <header class="navbar">
 
-    <a href="#home" class="logo">
-        <span class="logo-main">MIVI</span>
-        <span class="logo-sub">handmade with love</span>
+    <a href="#home" class="miha-brand" aria-label="MIHA Store home">
+        <span class="miha-brand-circle">
+            <img id="brandLogoPreview" src="assets/miha-logo-mark.png" alt="MIHA Store logo">
+        </span>
+        <span id="brandNameDisplay" class="miha-brand-name">MIHA Store</span>
     </a>
 
     <nav class="desktop-nav">
@@ -116,7 +118,7 @@
     <div>
         <strong>TAKE-AWAY ONLY</strong>
         <span>
-            MIVI currently does not provide delivery.
+            MIHA currently does not provide delivery.
             Please collect your handmade order.
         </span>
     </div>
@@ -193,12 +195,23 @@
 
         <div class="scene-glow"></div>
 
-        <div id="heroPhotoUpload" class="photo-upload-box">
-            <span class="photo-upload-icon">＋</span>
-            <strong id="heroPhotoTitle">Featured photo</strong>
-            <span id="heroPhotoHint">Managed from the admin dashboard</span>
+        <div id="heroPhotoUpload" class="photo-upload-box miha-slideshow" aria-label="MIHA featured images">
 
-            <img id="heroPhotoPreview" class="photo-upload-preview" alt="Your uploaded photo">
+            <div class="slideshow-header">
+                <span class="photo-upload-icon">♡</span>
+                <div>
+                    <strong id="heroPhotoTitle">MIHA Store</strong>
+                    <span id="heroPhotoHint">Featured handmade collection</span>
+                </div>
+            </div>
+
+            <div class="slideshow-viewport">
+                <div id="heroSlidesTrack" class="hero-slides-track"></div>
+                <button id="heroPrev" class="slide-arrow slide-prev" onclick="changeHeroSlide(-1)" aria-label="Previous image">‹</button>
+                <button id="heroNext" class="slide-arrow slide-next" onclick="changeHeroSlide(1)" aria-label="Next image">›</button>
+                <div id="heroSlideDots" class="slide-dots" aria-label="Featured image navigation"></div>
+            </div>
+
         </div>
 
     </div>
@@ -261,7 +274,7 @@
 
         <div class="about-content">
 
-            <span class="eyebrow">THE MIVI STORY</span>
+            <span class="eyebrow">THE MIHA STORY</span>
 
             <h2>
                 Handmade isn't
@@ -269,7 +282,7 @@
             </h2>
 
             <p>
-                MIVI was created for people who love tiny,
+                MIHA was created for people who love tiny,
                 beautiful things that feel personal.
             </p>
 
@@ -281,7 +294,7 @@
             </p>
 
             <div class="signature">
-                Made with ♡ by MIVI
+                Made with ♡ by MIHA
             </div>
 
         </div>
@@ -374,13 +387,10 @@
 
 <footer>
 
-    <div class="footer-logo">
-        MIVI
-        <span>handmade with love</span>
-    </div>
+    <div class="footer-logo"><img src="assets/miha-logo-mark.png" alt="MIHA logo"><span>MIHA • handmade with love</span></div>
 
     <p>
-        © 2026 MIVI. Crafted with 🧶 & ♡
+        © 2026 MIHA. Crafted with 🧶 & ♡
     </p>
 
     <button class="admin-footer-btn" onclick="showAdminLogin()">
@@ -448,11 +458,11 @@
 
         <button class="modal-close" onclick="closeLogin()">×</button>
 
-        <div class="modal-logo">MIVI</div>
+        <div class="modal-logo"><img src="assets/miha-logo-mark.png" alt="MIHA logo"><span>MIHA</span></div>
 
         <span class="eyebrow">WELCOME BACK</span>
 
-        <h2>Welcome to MIVI ♡</h2>
+        <h2>Welcome to MIHA ♡</h2>
 
         <p class="modal-description">
             Login to continue your handmade journey.
@@ -501,7 +511,7 @@
 
         <button class="modal-close" onclick="closeCreateAccount()">×</button>
 
-        <div class="modal-logo">MIVI</div>
+        <div class="modal-logo"><img src="assets/miha-logo-mark.png" alt="MIHA logo"><span>MIHA</span></div>
 
         <span class="eyebrow">CREATE YOUR ACCOUNT</span>
 
@@ -579,7 +589,7 @@
         <h2>Admin Login</h2>
 
         <p class="modal-description">
-            Access the MIVI management dashboard.
+            Access the MIHA management dashboard.
         </p>
 
         <div class="input-group">
@@ -708,7 +718,7 @@
         <h2>Thank you! 🧶</h2>
 
         <p>
-            Your MIVI order has been placed successfully.
+            Your MIHA order has been placed successfully.
         </p>
 
         <div class="success-order-summary">
@@ -762,7 +772,7 @@
 
         <button class="modal-close" onclick="closeProfile()">×</button>
 
-        <div class="modal-logo">MIVI</div>
+        <div class="modal-logo"><img src="assets/miha-logo-mark.png" alt="MIHA logo"><span>MIHA</span></div>
 
         <span class="eyebrow">YOUR ACCOUNT</span>
 
@@ -809,7 +819,7 @@
     <div class="admin-sidebar">
 
         <div class="admin-brand">
-            <strong>MIVI</strong>
+            <strong>MIHA</strong>
             <span>ADMIN STUDIO</span>
         </div>
 
@@ -869,7 +879,7 @@
         <div class="admin-topbar">
 
             <div>
-                <span class="eyebrow">MIVI MANAGEMENT</span>
+                <span class="eyebrow">MIHA MANAGEMENT</span>
                 <h1>Good morning, Admin ♡</h1>
             </div>
 
@@ -955,7 +965,7 @@
                     <div class="panel-header">
                         <div>
                             <span class="eyebrow">QUICK ACTION</span>
-                            <h2>Grow MIVI</h2>
+                            <h2>Grow MIHA</h2>
                         </div>
                     </div>
 
@@ -988,21 +998,19 @@
                     </div>
 
                     <div class="featured-photo-admin">
-                        <span class="eyebrow">FEATURED PHOTO</span>
+                        <span class="eyebrow">FEATURED SLIDESHOW</span>
                         <label class="image-upload">
                             <input
                                 type="file"
                                 id="adminHeroPhoto"
                                 accept="image/*"
+                                multiple
                                 onchange="previewHeroPhoto(event)"
                             >
-                            <span id="adminHeroPhotoText">🖼️ Upload hero photo</span>
-                            <img
-                                id="adminHeroPhotoPreview"
-                                class="image-preview"
-                                alt="Featured hero preview"
-                            >
+                            <span id="adminHeroPhotoText">🖼️ Upload multiple photos</span>
+                            <div id="adminHeroSlidesPreview" class="admin-slides-preview"></div>
                         </label>
+                        <small class="admin-help-text">Select up to 6 images. They auto-slide every 5 seconds and users can swipe.</small>
                     </div>
 
                 </div>
@@ -1019,7 +1027,7 @@
             <div class="admin-section-title">
 
                 <div>
-                    <span class="eyebrow">MIVI COLLECTION</span>
+                    <span class="eyebrow">MIHA COLLECTION</span>
                     <h2>Products</h2>
                 </div>
 
@@ -1062,7 +1070,7 @@
             <div class="admin-section-title">
 
                 <div>
-                    <span class="eyebrow">YOUR MIVI COMMUNITY</span>
+                    <span class="eyebrow">YOUR MIHA COMMUNITY</span>
                     <h2>Customers</h2>
                 </div>
 
@@ -1083,6 +1091,35 @@
                     <span class="eyebrow">ADMIN CONTROL</span>
                     <h2>Settings</h2>
                 </div>
+
+            </div>
+
+            <div class="settings-card miha-brand-settings">
+
+                <h3>MIHA Store Branding</h3>
+
+                <div class="brand-setting-preview">
+                    <span class="brand-setting-circle">
+                        <img id="adminBrandLogoPreview" src="assets/miha-logo-mark.png" alt="Brand logo preview">
+                    </span>
+                    <strong id="adminBrandNamePreview">MIHA Store</strong>
+                </div>
+
+                <div class="input-group">
+                    <label>Store Name</label>
+                    <input type="text" id="settingsBrandName" value="MIHA Store" maxlength="35">
+                </div>
+
+                <div class="input-group">
+                    <label>Small Circle Logo</label>
+                    <label class="image-upload brand-logo-upload">
+                        <input type="file" id="settingsBrandLogo" accept="image/*" onchange="previewBrandLogo(event)">
+                        <span>Upload logo image</span>
+                    </label>
+                </div>
+
+                <button class="primary-btn" onclick="saveBrandSettings()">Save Store Branding</button>
+                <p id="brandSettingsMessage" class="form-message"></p>
 
             </div>
 
@@ -1135,12 +1172,12 @@
 
         <button class="modal-close" onclick="closeAddProduct()">×</button>
 
-        <span class="eyebrow">MIVI ADMIN</span>
+        <span class="eyebrow">MIHA ADMIN</span>
 
         <h2>Add a new product</h2>
 
         <p class="modal-description">
-            Give your handmade creation a little place in the MIVI shop.
+            Give your handmade creation a little place in the MIHA shop.
         </p>
 
 
