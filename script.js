@@ -1,5 +1,5 @@
 /* =========================================================
-   MIVI — MAIN JAVASCRIPT
+   MIHA — MAIN JAVASCRIPT
 ========================================================= */
 
 
@@ -68,6 +68,11 @@ const DEFAULT_PRODUCTS = [
 const DEFAULT_SALE_IDEA =
     "Weekend bundle: save 10% when you choose any two handmade pieces.";
 
+const DEFAULT_HERO_PHOTO = "assets/miha-logo.png";
+const DEFAULT_BRAND_LOGO = "assets/miha-logo-mark.png";
+const DEFAULT_BRAND_NAME = "MIHA Store";
+const MIHA_BRAND_VERSION = "miha-v2";
+
 
 /* =========================================================
    SHARED STATE
@@ -95,7 +100,14 @@ let adminData = {
 
 let saleIdea = DEFAULT_SALE_IDEA;
 
-let heroPhoto = "";
+let heroPhoto = DEFAULT_HERO_PHOTO;
+let heroSlides = [DEFAULT_HERO_PHOTO];
+let heroSlideIndex = 0;
+let heroSlideTimer = null;
+let heroTouchStartX = 0;
+let heroTouchDeltaX = 0;
+let brandLogo = DEFAULT_BRAND_LOGO;
+let brandName = DEFAULT_BRAND_NAME;
 
 let productsSeeded = false;
 
@@ -281,11 +293,48 @@ function saveHeroPhoto() {
     updateSyncIndicator("saving");
 
     db.collection("settings").doc("store").set({
-        heroPhoto
+        heroPhoto: heroSlides[0] || DEFAULT_HERO_PHOTO,
+        heroSlides,
+        brandVersion: MIHA_BRAND_VERSION
     }, { merge: true })
         .then(() => updateSyncIndicator("saved"))
         .catch(error => {
             console.error("saveHeroPhoto failed:", error);
+            updateSyncIndicator("error");
+        });
+
+}
+
+
+function saveBrandSettings() {
+
+    const nameInput = document.getElementById("settingsBrandName");
+    const message = document.getElementById("brandSettingsMessage");
+
+    const nextName = nameInput ? nameInput.value.trim() : "";
+
+    if (!nextName) {
+        if (message) message.textContent = "Please enter a store name.";
+        return;
+    }
+
+    brandName = nextName;
+
+    updateSyncIndicator("saving");
+
+    db.collection("settings").doc("store").set({
+        brandName,
+        brandLogo,
+        brandVersion: MIHA_BRAND_VERSION
+    }, { merge: true })
+        .then(() => {
+            updateBrandUI();
+            if (message) message.textContent = "Store branding saved.";
+            updateSyncIndicator("saved");
+        })
+        .catch(error => {
+            console.error("saveBrandSettings failed:", error);
+            if (message) message.textContent = "Could not save branding.";
             updateSyncIndicator("error");
         });
 
@@ -372,9 +421,39 @@ function startLiveSync() {
             const banner = document.getElementById("customerSaleIdea");
             if (banner) banner.textContent = saleIdea;
         }
-        if (typeof data.heroPhoto === "string" && data.heroPhoto) {
-            heroPhoto = data.heroPhoto;
-            if (typeof renderHeroPhoto === "function") renderHeroPhoto();
+        if (typeof data.brandName === "string" && data.brandName.trim()) {
+            brandName = data.brandName.trim();
+        }
+
+        if (typeof data.brandLogo === "string" && data.brandLogo) {
+            brandLogo = data.brandLogo;
+        }
+
+        if (Array.isArray(data.heroSlides) && data.heroSlides.length) {
+            heroSlides = data.heroSlides.filter(item => typeof item === "string" && item);
+        } else if (typeof data.heroPhoto === "string" && data.heroPhoto) {
+            heroSlides = [data.heroPhoto];
+        } else {
+            heroSlides = [DEFAULT_HERO_PHOTO];
+        }
+
+        heroSlideIndex = Math.min(heroSlideIndex, Math.max(heroSlides.length - 1, 0));
+        heroPhoto = heroSlides[heroSlideIndex] || DEFAULT_HERO_PHOTO;
+
+        updateBrandUI();
+        renderHeroSlideshow();
+        renderAdminHeroSlides();
+
+        // One-time migration from the previous single-photo version.
+        if (data.brandVersion !== MIHA_BRAND_VERSION) {
+            db.collection("settings").doc("store").set({
+                brandVersion: MIHA_BRAND_VERSION,
+                brandName,
+                brandLogo,
+                heroSlides
+            }, { merge: true }).catch(error =>
+                console.error("MIHA brand migration failed:", error)
+            );
         }
 
     }, error => console.error("settings listener failed:", error));
@@ -446,53 +525,220 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateAdminDashboard();
 
-    renderHeroPhoto();
+    renderHeroSlideshow();
+    setupHeroSwipe();
+    updateBrandUI();
+    renderAdminHeroSlides();
 
     updateAccountUI();
 
 });
 
 
-function renderHeroPhoto() {
+function updateBrandUI() {
 
-    const preview = document.getElementById("heroPhotoPreview");
-    const uploadBox = document.getElementById("heroPhotoUpload");
+    const logo = document.getElementById("brandLogoPreview");
+    const name = document.getElementById("brandNameDisplay");
+    const adminLogo = document.getElementById("adminBrandLogoPreview");
+    const adminName = document.getElementById("adminBrandNamePreview");
+    const nameInput = document.getElementById("settingsBrandName");
 
-    if (!preview || !uploadBox || !heroPhoto) return;
+    if (logo) logo.src = brandLogo || DEFAULT_BRAND_LOGO;
+    if (name) name.textContent = brandName || DEFAULT_BRAND_NAME;
+    if (adminLogo) adminLogo.src = brandLogo || DEFAULT_BRAND_LOGO;
+    if (adminName) adminName.textContent = brandName || DEFAULT_BRAND_NAME;
+    if (nameInput && document.activeElement !== nameInput) {
+        nameInput.value = brandName || DEFAULT_BRAND_NAME;
+    }
 
-    preview.src = heroPhoto;
-    preview.classList.add("show");
-    uploadBox.classList.add("has-photo");
+}
+
+
+function renderHeroSlideshow() {
+
+    const track = document.getElementById("heroSlidesTrack");
+    const dots = document.getElementById("heroSlideDots");
+    const prev = document.getElementById("heroPrev");
+    const next = document.getElementById("heroNext");
+
+    if (!track || !dots) return;
+
+    if (!Array.isArray(heroSlides) || !heroSlides.length) {
+        heroSlides = [DEFAULT_HERO_PHOTO];
+    }
+
+    heroSlideIndex = Math.max(0, Math.min(heroSlideIndex, heroSlides.length - 1));
+
+    track.innerHTML = heroSlides.map((src, index) => `
+        <div class="hero-slide ${index === heroSlideIndex ? "active" : ""}">
+            <img src="${src}" alt="MIHA featured image ${index + 1}" draggable="false">
+        </div>
+    `).join("");
+
+    dots.innerHTML = heroSlides.length > 1 ? heroSlides.map((_, index) => `
+        <button class="slide-dot ${index === heroSlideIndex ? "active" : ""}" onclick="goToHeroSlide(${index})" aria-label="Go to image ${index + 1}"></button>
+    `).join("") : "";
+
+    if (prev) prev.style.display = heroSlides.length > 1 ? "grid" : "none";
+    if (next) next.style.display = heroSlides.length > 1 ? "grid" : "none";
+
+    const title = document.getElementById("heroPhotoTitle");
+    if (title) title.textContent = brandName || DEFAULT_BRAND_NAME;
+
+    startHeroSlideshow();
+}
+
+
+function goToHeroSlide(index) {
+
+    if (!heroSlides.length) return;
+
+    heroSlideIndex = (index + heroSlides.length) % heroSlides.length;
+    heroPhoto = heroSlides[heroSlideIndex];
+
+    renderHeroSlideshow();
+    resetHeroSlideshowTimer();
+
+}
+
+
+function changeHeroSlide(direction) {
+
+    goToHeroSlide(heroSlideIndex + direction);
+
+}
+
+
+function startHeroSlideshow() {
+
+    clearInterval(heroSlideTimer);
+
+    if (heroSlides.length <= 1) return;
+
+    heroSlideTimer = setInterval(() => {
+        goToHeroSlide(heroSlideIndex + 1);
+    }, 5000);
+
+}
+
+
+function resetHeroSlideshowTimer() {
+    startHeroSlideshow();
+}
+
+
+function setupHeroSwipe() {
+
+    const viewport = document.querySelector(".slideshow-viewport");
+    if (!viewport || viewport.dataset.swipeReady === "true") return;
+
+    viewport.dataset.swipeReady = "true";
+
+    viewport.addEventListener("touchstart", event => {
+        heroTouchStartX = event.touches[0].clientX;
+        heroTouchDeltaX = 0;
+    }, { passive: true });
+
+    viewport.addEventListener("touchmove", event => {
+        heroTouchDeltaX = event.touches[0].clientX - heroTouchStartX;
+    }, { passive: true });
+
+    viewport.addEventListener("touchend", () => {
+        if (Math.abs(heroTouchDeltaX) < 45) return;
+
+        if (heroTouchDeltaX < 0) {
+            changeHeroSlide(1);
+        } else {
+            changeHeroSlide(-1);
+        }
+    });
+
+}
+
+
+function renderAdminHeroSlides() {
+
+    const container = document.getElementById("adminHeroSlidesPreview");
+    if (!container) return;
+
+    container.innerHTML = heroSlides.map((src, index) => `
+        <div class="admin-slide-thumb">
+            <img src="${src}" alt="Slide ${index + 1}">
+            <button type="button" onclick="removeHeroSlide(${index})" aria-label="Remove slide">×</button>
+            <span>${index + 1}</span>
+        </div>
+    `).join("");
 
 }
 
 
 function previewHeroPhoto(event) {
 
-    const file = event.target.files[0];
+    const files = Array.from(event.target.files || [])
+        .filter(file => file.type.startsWith("image/"))
+        .slice(0, 6);
 
+    if (!files.length) {
+        alert("Please choose image files.");
+        return;
+    }
+
+    Promise.all(
+        files.map(file => compressImageFile(file, 1000, 0.72))
+    ).then(images => {
+
+        heroSlides = images;
+        heroSlideIndex = 0;
+        heroPhoto = heroSlides[0];
+
+        saveHeroPhoto();
+        renderHeroSlideshow();
+        renderAdminHeroSlides();
+
+        const text = document.getElementById("adminHeroPhotoText");
+        if (text) text.textContent = `${heroSlides.length} photo${heroSlides.length === 1 ? "" : "s"} selected`;
+
+        event.target.value = "";
+
+    }).catch(error => {
+        console.error(error);
+        alert("Could not process those photos. Please try smaller images.");
+    });
+
+}
+
+
+function removeHeroSlide(index) {
+
+    if (heroSlides.length <= 1) {
+        alert("Keep at least one featured image.");
+        return;
+    }
+
+    heroSlides.splice(index, 1);
+    heroSlideIndex = Math.min(heroSlideIndex, heroSlides.length - 1);
+    heroPhoto = heroSlides[heroSlideIndex];
+
+    saveHeroPhoto();
+    renderHeroSlideshow();
+    renderAdminHeroSlides();
+
+}
+
+
+function previewBrandLogo(event) {
+
+    const file = event.target.files && event.target.files[0];
     if (!file || !file.type.startsWith("image/")) {
         alert("Please choose an image file.");
         return;
     }
 
-    compressImageFile(file, 1200, 0.8).then(dataUrl => {
-
-        heroPhoto = dataUrl;
-        saveHeroPhoto();
-        renderHeroPhoto();
-
-        const preview = document.getElementById("adminHeroPhotoPreview");
-        const text = document.getElementById("adminHeroPhotoText");
-
-        preview.src = heroPhoto;
-        preview.style.display = "block";
-        text.style.display = "none";
-
+    compressImageFile(file, 500, 0.82).then(dataUrl => {
+        brandLogo = dataUrl;
+        updateBrandUI();
     }).catch(() => {
-
-        alert("Could not process that photo. Please try a different image.");
-
+        alert("Could not process that logo. Please try another image.");
     });
 
 }
@@ -1058,7 +1304,7 @@ function placeOrder() {
     const order = {
 
         id:
-            "MIVI-" +
+            "MIHA-" +
             Date.now().toString().slice(-6),
 
         name,
@@ -1482,7 +1728,7 @@ function openProfile() {
     syncSharedState();
 
     document.getElementById("profileName").textContent =
-        customer.name || "MIVI Customer";
+        customer.name || "MIHA Customer";
 
     document.getElementById("profileEmail").textContent =
         customer.email || "—";
@@ -1769,6 +2015,8 @@ function updateAdminDashboard() {
     renderRecentOrders();
 
     renderCustomers();
+    updateBrandUI();
+    renderAdminHeroSlides();
 
 }
 
@@ -2916,7 +3164,7 @@ function openProduct(productId) {
                 : `<div class="product-placeholder">🧶</div>`}
         </div>
         <div class="product-detail-info">
-            <span class="eyebrow">HANDMADE BY MIVI</span>
+            <span class="eyebrow">HANDMADE BY MIHA</span>
             <h2>${escapeHTML(product.name)}</h2>
             <strong class="product-detail-price">
                 ${product.salePrice
