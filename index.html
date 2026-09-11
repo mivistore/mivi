@@ -197,14 +197,6 @@
 
         <div id="heroPhotoUpload" class="photo-upload-box miha-slideshow" aria-label="MIHA featured images">
 
-            <div class="slideshow-header">
-                <span class="photo-upload-icon">♡</span>
-                <div>
-                    <strong id="heroPhotoTitle">MIHA Store</strong>
-                    <span id="heroPhotoHint">Featured handmade collection</span>
-                </div>
-            </div>
-
             <div class="slideshow-viewport">
                 <div id="heroSlidesTrack" class="hero-slides-track"></div>
                 <button id="heroPrev" class="slide-arrow slide-prev" onclick="changeHeroSlide(-1)" aria-label="Previous image">‹</button>
@@ -239,10 +231,12 @@
             No two creations are exactly alike.
         </p>
 
-        <div class="customer-sale-banner">
+        <div id="customerSaleBanner" class="customer-sale-banner" style="display:none;">
             <span class="eyebrow">CURRENT SALE</span>
-            <strong id="customerSaleIdea">Weekend bundle: save 10% when you choose any two handmade pieces.</strong>
+            <strong id="customerSaleIdea"></strong>
         </div>
+
+        <div id="categoryFilters" class="category-filters" aria-label="Product categories"></div>
 
     </div>
 
@@ -387,15 +381,15 @@
 
 <footer>
 
-    <div class="footer-logo"><img src="assets/miha-logo-mark.png" alt="MIHA logo"><span>MIHA • handmade with love</span></div>
+    <div class="footer-logo">
+        <img id="footerBrandLogo" src="assets/miha-logo-mark.png" alt="MIHA Store logo">
+        <span id="footerBrandName">MIHA • handmade with love</span>
+    </div>
 
     <p>
         © 2026 MIHA. Crafted with 🧶 & ♡
+        <span class="footer-created-by">Created by Rudra Patel</span>
     </p>
-
-    <button class="admin-footer-btn" onclick="showAdminLogin()">
-        Admin Login
-    </button>
 
 </footer>
 
@@ -994,7 +988,7 @@
                     <div class="sale-idea">
                         <span class="eyebrow">SALE IDEA</span>
                         <input id="saleIdeaInput" type="text" placeholder="Write a sale idea for customers">
-                        <button class="small-btn" onclick="saveSaleIdea()">Show on shop</button>
+                        <button class="small-btn" onclick="saveSaleIdea()">Save / hide sale</button>
                     </div>
 
                     <div class="featured-photo-admin">
@@ -1010,7 +1004,17 @@
                             <span id="adminHeroPhotoText">🖼️ Upload multiple photos</span>
                             <div id="adminHeroSlidesPreview" class="admin-slides-preview"></div>
                         </label>
-                        <small class="admin-help-text">Select up to 6 images. They auto-slide every 5 seconds and users can swipe.</small>
+                        <small class="admin-help-text">Select up to 6 images. They auto-slide every 5 seconds and users can swipe. After upload, you can connect each slide to a product.</small>
+                    </div>
+
+                    <div class="category-manager">
+                        <span class="eyebrow">PRODUCT CATEGORIES</span>
+                        <div class="category-create-row">
+                            <input id="newCategoryInput" type="text" maxlength="30" placeholder="e.g. Key Chain, Flower">
+                            <button class="small-btn" onclick="createCategory()">+ Create Category</button>
+                        </div>
+                        <div id="adminCategoryList" class="admin-category-list"></div>
+                        <small class="admin-help-text">Create categories here, then choose one while adding a product.</small>
                     </div>
 
                 </div>
@@ -1195,8 +1199,16 @@
 
 
         <div class="input-group">
+            <label>Product Category *</label>
+            <select id="productCategory">
+                <option value="">Select a category</option>
+            </select>
+        </div>
 
-            <label>Product Image *</label>
+
+        <div class="input-group">
+
+            <label>Product Images *</label>
 
             <label class="image-upload">
 
@@ -1204,12 +1216,15 @@
                     type="file"
                     id="productImage"
                     accept="image/*"
+                    multiple
                     onchange="previewProductImage(event)"
                 >
 
                 <span id="uploadText">
-                    🖼️ Click to choose an image
+                    🖼️ Click to choose product photos
                 </span>
+
+                <div id="productImagesPreview" class="product-images-preview"></div>
 
                 <img
                     id="imagePreview"
