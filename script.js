@@ -21,6 +21,9 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+// Initialize App Check with your reCAPTCHA Enterprise key
+const appCheck = firebase.appCheck().activate('6Lc0YrUtAAAAAKRMtGz7Zs4yJ_dBx6t_DEEp6gTm', true);
+
 
 const db = firebase.firestore();
 
