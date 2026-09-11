@@ -1392,15 +1392,18 @@ function placeOrder() {
     const existingSavedCustomer =
         getCurrentCustomer() || {};
 
-    localStorage.setItem(
-        "miviCurrentCustomer",
-        JSON.stringify({
+   const safeCustomer = {
             ...existingSavedCustomer,
             name,
             instagram,
             phone,
-        })
-    );
+        };
+        delete safeCustomer.password;
+
+        localStorage.setItem(
+            "miviCurrentCustomer",
+            JSON.stringify(safeCustomer)
+        );
 
 
     /*
@@ -1692,10 +1695,13 @@ function createAccount() {
     saveCustomers();
 
 
-    localStorage.setItem(
-        "miviCurrentCustomer",
-        JSON.stringify(customer)
-    );
+   const safeCustomer = { ...customer };
+delete safeCustomer.password;
+
+localStorage.setItem(
+    "miviCurrentCustomer",
+    JSON.stringify(safeCustomer)
+);
 
 
     message.textContent =
