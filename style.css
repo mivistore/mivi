@@ -5302,3 +5302,317 @@ footer {
         font-size: 26px;
     }
 }
+
+/* =========================================================
+   MIHA UPDATE — CLEAN HERO SLIDESHOW + PINK TAKEAWAY
+========================================================= */
+.takeaway-top {
+    background: linear-gradient(90deg, #ffd7e1 0%, #ffe7ed 50%, #ffd1dc 100%) !important;
+    border-top: 1px solid rgba(201,0,22,.06);
+    border-bottom: 1px solid rgba(201,0,22,.08);
+    color: var(--text);
+}
+.takeaway-icon {
+    background: rgba(255,255,255,.82) !important;
+    color: var(--pink-dark);
+    box-shadow: 0 8px 20px rgba(120,0,20,.08);
+}
+.takeaway-top strong { color: var(--pink-dark); }
+.takeaway-top span { color: #70464f; }
+.miha-slideshow { padding: 0 !important; }
+.miha-slideshow .slideshow-header { display: none !important; }
+.miha-slideshow .slideshow-viewport {
+    width: 100%; height: 100%; min-height: 100%; flex: 1 1 auto;
+    border-radius: 28px; background: #ffdce5;
+}
+.miha-slideshow .hero-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.miha-slideshow .slide-arrow {
+    background: rgba(201,0,22,.88) !important; color:#fff !important;
+    border:2px solid rgba(255,255,255,.65) !important;
+    box-shadow:0 8px 22px rgba(120,0,20,.18);
+}
+.miha-slideshow .slide-arrow:hover { background:#a90012 !important; }
+.miha-slideshow .slide-dot { background:rgba(255,255,255,.70) !important; border:1px solid rgba(201,0,22,.15); }
+.miha-slideshow .slide-dot.active { background:var(--pink-dark) !important; }
+footer .admin-footer-btn { display:none !important; }
+.footer-logo { display:flex; align-items:center; gap:14px; }
+.footer-logo img {
+    width:58px; height:58px; border-radius:50%; object-fit:cover;
+    background:#ffdce5; border:2px solid rgba(255,255,255,.25);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.footer-logo span { color:#fff; }
+.hero {
+    background: radial-gradient(circle at 15% 25%, rgba(255,190,207,.32), transparent 27%),
+                radial-gradient(circle at 85% 65%, rgba(255,210,222,.42), transparent 30%),
+                linear-gradient(135deg,#fff9fb 0%,#fff0f4 50%,#ffe4eb 100%) !important;
+}
+.hero-background-shape.shape-one,.hero-background-shape.shape-two { background:#ffc8d6 !important; opacity:.24 !important; }
+.scene-glow { background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(249,209,217,.35) 38%,rgba(255,190,207,.35) 65%,transparent 75%) !important; }
+@media (max-width:900px) { .miha-slideshow { width:min(470px,100%); height:470px; min-height:470px; } }
+@media (max-width:600px) { .miha-slideshow { width:100%; height:360px; min-height:360px; border-radius:24px; } .miha-slideshow .slideshow-viewport { border-radius:24px; } .footer-logo img { width:50px; height:50px; } }
+
+/* =========================================================
+   MIHA FINAL PRODUCT / CATEGORY / SLIDESHOW UPDATES
+========================================================= */
+
+/* Keep product cards completely still on hover. */
+.product-card,
+.product-card:hover {
+    transform: none !important;
+}
+
+.product-card:hover {
+    box-shadow: var(--shadow-soft) !important;
+}
+
+.product-card .product-image img,
+.product-card:hover .product-image img {
+    transform: none !important;
+}
+
+.add-cart-btn,
+.add-cart-btn:hover {
+    transform: none !important;
+}
+
+.add-cart-btn:hover {
+    background: var(--pink-dark);
+    color: #fff;
+}
+
+/* Category filters */
+.category-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 22px auto 0;
+}
+
+.category-filter {
+    border: 1px solid rgba(201, 0, 22, .16);
+    background: rgba(255, 255, 255, .72);
+    color: var(--pink-dark);
+    border-radius: 999px;
+    padding: 9px 16px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--pink-dark);
+    color: #fff;
+    border-color: var(--pink-dark);
+}
+
+.product-category-tag {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--pink-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+/* Hero images can be linked to a product from Admin. */
+.hero-slide-clickable {
+    cursor: pointer;
+}
+
+.hero-slide-clickable img {
+    cursor: pointer;
+}
+
+/* Product detail: manual gallery only — no autoplay. */
+.product-detail-gallery-wrap {
+    width: 100%;
+}
+
+.product-detail-main-image {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--pink-light);
+    touch-action: pan-y;
+}
+
+.product-detail-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+}
+
+.product-detail-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(201, 0, 22, .9);
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.product-detail-arrow:hover {
+    background: var(--pink-dark);
+}
+
+.detail-prev { left: 14px; }
+.detail-next { right: 14px; }
+
+.product-detail-thumbs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 2px 3px;
+}
+
+.detail-thumb {
+    flex: 0 0 62px;
+    width: 62px;
+    height: 62px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+}
+
+.detail-thumb.active {
+    border-color: var(--pink-dark);
+}
+
+.detail-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-detail-counter {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+/* Multiple product-photo preview in Admin. */
+.product-images-preview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.product-images-preview img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(201, 0, 22, .12);
+}
+
+/* Admin category creator. */
+.category-manager {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid rgba(201, 0, 22, .10);
+    border-radius: 18px;
+    background: rgba(255, 245, 248, .62);
+}
+
+.category-create-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.category-create-row input {
+    flex: 1;
+}
+
+.admin-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.admin-category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgba(201, 0, 22, .12);
+    color: var(--pink-dark);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.admin-category-chip button {
+    width: 19px;
+    height: 19px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--pink-soft);
+    color: var(--pink-dark);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.admin-photo-count {
+    display: block;
+    color: var(--text-light);
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+/* Footer credit uses the exact same footer font and size. */
+.footer-created-by {
+    margin-left: 12px;
+    font: inherit;
+    color: inherit;
+}
+
+/* The sale box disappears completely when Admin clears it. */
+.customer-sale-banner[style*="display: none"] {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+    .category-create-row {
+        flex-direction: column;
+    }
+
+    .product-detail-main-image {
+        height: 340px;
+    }
+
+    .product-images-preview {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-created-by {
+        display: block;
+        margin: 4px 0 0;
+    }
+}
